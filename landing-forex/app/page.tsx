@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ShieldAlert, Scale, FileSearch, ArrowRight, MessageCircle, Gavel, CheckCircle2 } from 'lucide-react';
 
 export default function LandingPageForex() {
@@ -16,24 +16,6 @@ export default function LandingPageForex() {
     e.preventDefault();
     console.log("Formulario enviado", formData);
     alert("Solicitud procesada por CAPITAL CLAIM ULTRA 9K. Un especialista revisará la viabilidad de su caso a la brevedad.");
-  };
-
-  // Tipado correcto y estricto compatible con TypeScript y Framer Motion
-  const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6 } 
-    }
-  };
-
-  const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.2 } 
-    }
   };
 
   return (
@@ -83,27 +65,32 @@ export default function LandingPageForex() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
-            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-2xl">
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-blue-500/40 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.6 }} 
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-blue-500/40 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
                 <ShieldAlert className="h-4 w-4 text-blue-400" />
                 Fuerza de Choque contra Fraudes Financieros
-              </motion.div>
+              </div>
               
-              <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
                 Recupere su capital. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-slate-100 drop-shadow-sm">Desmantelamos la estafa de su broker.</span>
-              </motion.h1>
+              </h1>
               
-              <motion.p variants={fadeUp} className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
                 En <strong>CAPITAL CLAIM ULTRA 9K</strong> abordamos de forma implacable las disputas del mercado Forex: engaños, retenciones de fondos y plataformas irregulares. No permita que se queden con su dinero.
-              </motion.p>
+              </p>
               
-              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <a href="#evaluacion" className="inline-flex justify-center items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-md font-extrabold text-lg hover:bg-blue-500 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)]">
                   Iniciar Caso con ULTRA 9K
                   <ArrowRight className="h-5 w-5" />
                 </a>
-              </motion.div>
+              </div>
             </motion.div>
 
             <motion.div 
@@ -131,10 +118,10 @@ export default function LandingPageForex() {
       {/* IDENTIFICACIÓN DEL PROBLEMA */}
       <section className="py-24 bg-slate-900 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-extrabold text-white mb-4">¿Víctima de maniobras ilegales en Forex?</h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">Las plataformas no reguladas usan manipulación psicológica y técnica. Nuestro protocolo de recuperación fue diseñado para neutralizarlas.</p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -144,7 +131,10 @@ export default function LandingPageForex() {
             ].map((item, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1, duration: 0.5 }} viewport={{ once: true }}
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                transition={{ delay: index * 0.1, duration: 0.5 }} 
+                viewport={{ once: true }}
                 className="bg-slate-950 border border-slate-800 p-8 rounded-xl hover:border-blue-500/50 transition-all"
               >
                 <div className="bg-red-950/50 border border-red-500/30 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
@@ -162,7 +152,7 @@ export default function LandingPageForex() {
       <section className="py-24 bg-slate-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <h2 className="text-3xl md:text-4xl font-extrabold mb-6">El Método CAPITAL CLAIM ULTRA 9K</h2>
               <p className="text-slate-400 text-lg mb-8 leading-relaxed">
                 Desplegamos una estrategia integral combinando rastreo técnico, auditoría legal y presión regulatoria para forzar la restitución de su inversión.
@@ -223,7 +213,7 @@ export default function LandingPageForex() {
       <section id="evaluacion" className="py-24 bg-slate-900 border-t border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }}
             className="bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden"
           >
             <div className="bg-blue-950 p-8 text-center border-b border-blue-900/50">
