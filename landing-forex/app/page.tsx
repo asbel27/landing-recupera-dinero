@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldAlert, Scale, FileSearch, ArrowRight, MessageCircle, Gavel, CheckCircle2 } from 'lucide-react';
+import { ShieldAlert, Scale, FileSearch, ArrowRight, Gavel, CheckCircle2 } from 'lucide-react';
 
 export default function LandingPageForex() {
   const [formData, setFormData] = useState({ name: '', email: '', broker: '', amount: '' });
@@ -35,10 +35,6 @@ export default function LandingPageForex() {
               </div>
             </div>
             <div className="hidden md:flex gap-6 items-center">
-              <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
-                <MessageCircle className="h-4 w-4" />
-                Línea Directa WhatsApp
-              </a>
               <a href="#evaluacion" className="bg-blue-600 text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                 Activar Reclamación
               </a>
@@ -201,8 +197,10 @@ export default function LandingPageForex() {
                   <span>Análisis de viabilidad sin costo inicial</span>
                 </li>
               </ul>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="block w-full text-center bg-emerald-600 text-white py-3.5 rounded-md font-bold hover:bg-emerald-500 transition-colors relative z-10 shadow-lg">
-                Hablar con un Especialista en WhatsApp
+              
+              {/* Botón redirigido al formulario de evaluación */}
+              <a href="#evaluacion" className="block w-full text-center bg-blue-600 text-white py-3.5 rounded-md font-bold hover:bg-blue-500 transition-colors relative z-10 shadow-lg">
+                Iniciar Evaluación del Caso
               </a>
             </motion.div>
           </div>
