@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ShieldAlert, Scale, FileSearch, ArrowRight, MessageCircle, Gavel, CheckCircle2 } from 'lucide-react';
 
 export default function LandingPageForex() {
@@ -18,8 +18,8 @@ export default function LandingPageForex() {
     alert("Solicitud procesada por CAPITAL CLAIM ULTRA 9K. Un especialista revisará la viabilidad de su caso a la brevedad.");
   };
 
-  // Definición tipada limpia compatible con Framer Motion / TypeScript
-  const fadeUp = {
+  // Tipado correcto y estricto compatible con TypeScript y Framer Motion
+  const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
@@ -28,7 +28,7 @@ export default function LandingPageForex() {
     }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1, 
