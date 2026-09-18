@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldAlert, Scale, FileSearch, ArrowRight, Gavel, CheckCircle2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function LandingPageForex() {
   const [formData, setFormData] = useState({ name: '', email: '', broker: '', amount: '' });
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -14,8 +16,33 @@ export default function LandingPageForex() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulario enviado", formData);
-    alert("Solicitud procesada por CAPITAL CLAIM ULTRA 9K. Un especialista revisará la viabilidad de su caso a la brevedad.");
+    setLoading(true);
+
+    // Parámetros que se envían a tu plantilla de EmailJS
+    const templateParams = {
+      to_email: 'interaccionestelefonicas@gmail.com',
+      name: formData.name,
+      email: formData.email,
+      broker: formData.broker,
+      amount: formData.amount,
+    };
+
+    // REEMPLAZA ESTOS 3 VALORES CON LOS DE TU CUENTA DE EMAILJS:
+    const SERVICE_ID = "TU_SERVICE_ID";
+    const TEMPLATE_ID = "TU_TEMPLATE_ID";
+    const PUBLIC_KEY = "TU_PUBLIC_KEY";
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert("¡Solicitud enviada con éxito! Un especialista de CAPITAL CLAIM ULTRA 9K revisará su caso y le contactará a interaccionestelefonicas@gmail.com.");
+        setFormData({ name: '', email: '', broker: '', amount: '' });
+        setLoading(false);
+      }, (err) => {
+        console.log('FAILED...', err);
+        alert("Hubo un error al enviar la solicitud. Por favor, intente de nuevo.");
+        setLoading(false);
+      });
   };
 
   const fadeUp = {
@@ -53,7 +80,7 @@ export default function LandingPageForex() {
         </div>
       </nav>
 
-      {/* HERO SECTION CON IMAGEN DESDE CARPETA PUBLIC */}
+      {/* HERO SECTION */}
       <section className="relative pt-24 pb-32 overflow-hidden text-white min-h-[85vh] flex items-center">
         <div 
           className="absolute inset-0 z-0"
@@ -71,7 +98,6 @@ export default function LandingPageForex() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
-            {/* Columna de Texto */}
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-2xl">
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-blue-500/40 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
                 <ShieldAlert className="h-4 w-4 text-blue-400" />
@@ -95,7 +121,6 @@ export default function LandingPageForex() {
               </motion.div>
             </motion.div>
 
-            {/* Columna de Imagen Local Ajustada */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }} 
               animate={{ opacity: 1, scale: 1 }} 
@@ -104,7 +129,6 @@ export default function LandingPageForex() {
             >
               <div className="absolute inset-0 bg-blue-500/15 rounded-full blur-[100px] pointer-events-none mt-8"></div>
               
-              {/* Carga la imagen balanza.png con espacio superior (pt-8) para centrarla */}
               <motion.img 
                 animate={{ y: [0, -15, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -203,7 +227,6 @@ export default function LandingPageForex() {
                 </li>
               </ul>
               
-              {/* Botón redirigido al formulario de evaluación */}
               <a href="#evaluacion" className="block w-full text-center bg-blue-600 text-white py-3.5 rounded-md font-bold hover:bg-blue-500 transition-colors relative z-10 shadow-lg">
                 Iniciar Evaluación del Caso
               </a>
@@ -256,11 +279,15 @@ export default function LandingPageForex() {
               </div>
 
               <div className="pt-4">
-                <button type="submit" className="w-full bg-blue-600 text-white font-extrabold text-lg py-4 rounded-md hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.4)]">
-                  Enviar Reclamación a CAPITAL CLAIM ULTRA 9K
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full bg-blue-600 text-white font-extrabold text-lg py-4 rounded-md hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.4)] disabled:opacity-50"
+                >
+                  {loading ? "Enviando solicitud..." : "Enviar Reclamación a CAPITAL CLAIM ULTRA 9K"}
                 </button>
                 <p className="text-xs text-center text-slate-500 mt-4">
-                  Sus datos están resguardados bajo estricto secreto profesional.
+                  Sus datos están resguardados bajo estricto secreto profesional. Los casos se derivan a interaccionestelefonicas@gmail.com.
                 </p>
               </div>
             </form>
