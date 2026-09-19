@@ -1,13 +1,24 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldAlert, Scale, FileSearch, ArrowRight, Gavel, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 export default function LandingPageForex() {
   const [formData, setFormData] = useState({ name: '', email: '', broker: '', amount: '' });
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+
+  // Efecto para hacer que la ventana de éxito desaparezca sola a los 4 segundos
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,7 +44,7 @@ export default function LandingPageForex() {
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        alert("¡Solicitud enviada con éxito! Un especialista de CAPITAL CLAIM ULTRA 9K revisará su caso y le contactará a interaccionestelefonicas@gmail.com.");
+        setSuccessMessage(true); // Muestra la ventana animada de éxito
         setFormData({ name: '', email: '', broker: '', amount: '' });
         setLoading(false);
       }, (err) => {
@@ -54,10 +65,33 @@ export default function LandingPageForex() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-blue-600 selection:text-white overflow-x-hidden relative">
       
+      {/* VENTANA ANIMADA FLOTANTE DE ÉXITO (MODAL) */}
+      <AnimatePresence>
+        {successMessage && (
+          <motion.div 
+            initial={{ opacity: 0, y: -50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed top-6 right-6 z-50 max-w-md bg-slate-900 border border-emerald-500/50 p-6 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-start gap-4 backdrop-blur-md"
+          >
+            <div className="bg-emerald-500/20 p-2 rounded-xl border border-emerald-500/40 text-emerald-400 mt-0.5">
+              <CheckCircle2 className="h-6 w-6" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-base mb-1">¡Solicitud Procesada con Éxito!</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Su caso fue derivado a <span className="text-emerald-400 font-medium">interaccionestelefonicas@gmail.com</span>. Un especialista le contactará a la brevedad.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* NAVEGACIÓN */}
-      <nav className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+      <nav className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             <div className="flex items-center gap-3">
