@@ -128,7 +128,7 @@ export default function LandingPageForex() {
             <div>
               <h4 className="text-white font-bold text-base mb-1">¡Solicitud Procesada con Éxito!</h4>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Su caso fue derivado a <span className="text-emerald-400 font-medium">interaccionestelefonicas@gmail.com</span>. Un especialista le contactará a la brevedad.
+                Su caso fue derivado a <span className="text-emerald-400 font-medium"></span>. un especialista que le contactará a la brevedad.
               </p>
             </div>
           </motion.div>
@@ -220,38 +220,8 @@ export default function LandingPageForex() {
         </div>
       </section>
 
-      {/* IDENTIFICACIÓN DEL PROBLEMA */}
-      <section className="py-24 bg-slate-900 border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-16">
-            <h2 className="text-3xl font-extrabold text-white mb-4">¿Víctima de maniobras ilegales en Forex?</h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">Las plataformas no reguladas usan manipulación psicológica y técnica. Nuestro protocolo de recuperación fue diseñado para neutralizarlas.</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: "Bloqueo de Retiros", desc: "Le exigen pagar comisiones o supuestos impuestos fantasma para liberar su propio dinero." },
-              { title: "Manipulación de Gráficos", desc: "Pérdidas provocadas por alteraciones artificiales en los algoritmos de la plataforma." },
-              { title: "Falsos Gestores de Cuenta", desc: "Asesores que lo presionan para realizar depósitos mayores antes de desaparecer." }
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1, duration: 0.5 }} viewport={{ once: true }}
-                className="bg-slate-950 border border-slate-800 p-8 rounded-xl hover:border-blue-500/50 transition-all"
-              >
-                <div className="bg-red-950/50 border border-red-500/30 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <ShieldAlert className="h-6 w-6 text-red-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                <p className="text-slate-400 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* NUESTRO MÉTODO LEGAL */}
-      <section className="py-24 bg-slate-950 text-white">
+      {/* NUESTRO MÉTODO LEGAL (REUBICADO INMEDIATAMENTE DEBAJO DEL HERO CON BG-SLATE-900) */}
+      <section className="py-24 bg-slate-900 text-white border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -283,7 +253,7 @@ export default function LandingPageForex() {
             
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
-              className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-2xl relative overflow-hidden shadow-2xl"
+              className="bg-slate-950 border border-slate-800 p-8 md:p-12 rounded-2xl relative overflow-hidden shadow-2xl"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
               <h3 className="text-2xl font-bold mb-2 relative z-10 text-white">Cada hora cuenta.</h3>
@@ -305,7 +275,7 @@ export default function LandingPageForex() {
               </ul>
               
               <a href="#evaluacion" className="block w-full text-center bg-blue-600 text-white py-3.5 rounded-full font-bold hover:bg-blue-500 transition-colors relative z-10 shadow-lg">
-                Iniciar Evaluación del Caso
+                Recupera Tu Inversión Ya!
               </a>
             </motion.div>
           </div>
@@ -313,14 +283,14 @@ export default function LandingPageForex() {
       </section>
 
       {/* FORMULARIO DE CONVERSIÓN */}
-      <section id="evaluacion" className="py-24 bg-slate-900 border-t border-slate-800">
+      <section id="evaluacion" className="py-24 bg-slate-950 border-t border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
-            className="bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden"
+            className="bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden"
           >
             <div className="bg-blue-950 p-8 text-center border-b border-blue-900/50">
-              <h2 className="text-3xl font-extrabold text-white mb-3">Evaluación de Caso - Justicia Patrimonial</h2>
+              <h2 className="text-3xl font-extrabold text-white mb-3">Evaluación de Tu Caso - Justicia Patrimonial</h2>
               <p className="text-blue-200 max-w-xl mx-auto">Ingrese los detalles de la plataforma para poner en marcha el diagnóstico de recuperación.</p>
             </div>
             
@@ -329,13 +299,13 @@ export default function LandingPageForex() {
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-slate-300 mb-2">Nombre completo</label>
                   <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                     placeholder="Ej. Juan Pérez" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-slate-300 mb-2">Correo electrónico</label>
                   <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                     placeholder="correo@ejemplo.com" />
                 </div>
               </div>
@@ -343,7 +313,7 @@ export default function LandingPageForex() {
               {/* CAMPOS: TELÉFONO CON SELECTOR DE BANDERAS REALES Y FECHA */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">Número de Teléfono / WhatsApp</label>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">Número de Teléfono</label>
                   <div className="flex gap-2 relative">
                     
                     {/* SELECTOR PERSONALIZADO CON IMÁGENES DE BANDERAS */}
@@ -351,7 +321,7 @@ export default function LandingPageForex() {
                       <button
                         type="button"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="h-full px-3 py-3 rounded-md border border-slate-800 bg-slate-900 text-white flex items-center gap-2 hover:border-blue-500 transition-all text-sm min-w-[130px] justify-between"
+                        className="h-full px-3 py-3 rounded-md border border-slate-800 bg-slate-950 text-white flex items-center gap-2 hover:border-blue-500 transition-all text-sm min-w-[130px] justify-between"
                       >
                         <div className="flex items-center gap-2">
                           <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
@@ -362,7 +332,7 @@ export default function LandingPageForex() {
 
                       {/* MENÚ DESPLEGABLE CON BANDERAS */}
                       {isDropdownOpen && (
-                        <div className="absolute left-0 top-full mt-1 w-52 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl z-50 overflow-hidden">
+                        <div className="absolute left-0 top-full mt-1 w-52 bg-slate-950 border border-slate-800 rounded-lg shadow-2xl z-50 overflow-hidden">
                           {countries.map((country) => (
                             <button
                               key={country.code}
@@ -389,7 +359,7 @@ export default function LandingPageForex() {
                       value={formData.phone} 
                       onChange={handleInputChange} 
                       required
-                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                       placeholder="Solo números" 
                     />
                   </div>
@@ -398,7 +368,7 @@ export default function LandingPageForex() {
                 <div>
                   <label htmlFor="date" className="block text-sm font-semibold text-slate-300 mb-2">Fecha aproximada de inversión</label>
                   <input type="date" id="date" name="date" value={formData.date} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
+                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
                 </div>
               </div>
               
@@ -406,20 +376,20 @@ export default function LandingPageForex() {
                 <div>
                   <label htmlFor="broker" className="block text-sm font-semibold text-slate-300 mb-2">Nombre del Broker / Plataforma</label>
                   <input type="text" id="broker" name="broker" value={formData.broker} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                     placeholder="Ej. PlatformFX, etc." />
                 </div>
                 <div>
                   <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Capital Invertido</label>
                   <div className="flex gap-2">
                     <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
-                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                       placeholder="Ej. 10.000 o 5,000" />
                     <select 
                       name="currency" 
                       value={formData.currency} 
                       onChange={handleInputChange}
-                      className="px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-bold text-sm"
+                      className="px-4 py-3 rounded-md border border-slate-800 bg-slate-950 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-bold text-sm"
                     >
                       <option value="USD">USD ($)</option>
                       <option value="EUR">EUR (€)</option>
