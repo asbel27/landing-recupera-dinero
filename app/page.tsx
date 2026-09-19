@@ -410,7 +410,7 @@ export default function LandingPageForex() {
                     placeholder="Ej. PlatformFX, etc." />
                 </div>
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado</label>
+                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Capital Invertido</label>
                   <div className="flex gap-2">
                     <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
                       className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
