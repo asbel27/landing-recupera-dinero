@@ -144,7 +144,7 @@ export default function LandingPageForex() {
                 <Scale className="h-7 w-7 text-blue-400" />
               </div>
               <div>
-                <h1 className="text-xl font-black tracking-wider text-white">CAPITAL CLAIM <span className="text-blue-500">ULTRA 9K</span></h1>
+                <h1 className="text-xl font-black tracking-wider text-white">JUSTICIA <span className="text-blue-500">PATRIMONIAL</span></h1>
                 <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Protocolo de Recuperación Financiera</p>
               </div>
             </div>
@@ -187,12 +187,12 @@ export default function LandingPageForex() {
               </motion.h1>
               
               <motion.p variants={fadeUp} className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
-                En <strong>CAPITAL CLAIM ULTRA 9K</strong> abordamos de forma implacable las disputas del mercado Forex: engaños, retenciones de fondos y plataformas irregulares. No permita que se queden con su dinero.
+                En <strong>JUSTICIA PATRIMONIAL</strong> abordamos de forma implacable las disputas del mercado Forex: engaños, retenciones de fondos y plataformas irregulares. No permita que se queden con su dinero.
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
                 <a href="#evaluacion" className="inline-flex justify-center items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-extrabold text-lg hover:bg-blue-500 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)]">
-                  Iniciar Caso con ULTRA 9K
+                  Iniciar Caso con Justicia Patrimonial
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </motion.div>
@@ -255,14 +255,14 @@ export default function LandingPageForex() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-6">El Método CAPITAL CLAIM ULTRA 9K</h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-6">El Método Justicia Patrimonial</h2>
               <p className="text-slate-400 text-lg mb-8 leading-relaxed">
                 Desplegamos una estrategia integral combinando rastreo técnico, auditoría legal y presión regulatoria para forzar la restitución de su inversión.
               </p>
               
               <div className="space-y-6">
                 {[
-                  { icon: FileSearch, title: "1. Auditoría y Trazabilidad ULTRA 9K", desc: "Rastreamos la ruta exacta de sus fondos y la estructura legal del broker." },
+                  { icon: FileSearch, title: "1. Auditoría y Trazabilidad", desc: "Rastreamos la ruta exacta de sus fondos y la estructura legal del broker." },
                   { icon: Gavel, title: "2. Requerimiento Prejudicial Agresivo", desc: "Acción directa respaldada por normativas financieras internacionales." },
                   { icon: CheckCircle2, title: "3. Ejecución de Recobro", desc: "Exigimos la restitución total del capital bajo amenaza de acciones penales." }
                 ].map((step, index) => (
@@ -320,7 +320,7 @@ export default function LandingPageForex() {
             className="bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden"
           >
             <div className="bg-blue-950 p-8 text-center border-b border-blue-900/50">
-              <h2 className="text-3xl font-extrabold text-white mb-3">Evaluación de Caso - ULTRA 9K</h2>
+              <h2 className="text-3xl font-extrabold text-white mb-3">Evaluación de Caso - Justicia Patrimonial</h2>
               <p className="text-blue-200 max-w-xl mx-auto">Ingrese los detalles de la plataforma para poner en marcha el diagnóstico de recuperación.</p>
             </div>
             
@@ -410,7 +410,7 @@ export default function LandingPageForex() {
                     placeholder="Ej. PlatformFX, etc." />
                 </div>
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Capital Invertido</label>
+                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado</label>
                   <div className="flex gap-2">
                     <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
                       className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -434,7 +434,7 @@ export default function LandingPageForex() {
                   disabled={loading}
                   className="w-full bg-blue-600 text-white font-extrabold text-lg py-4 rounded-full hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.4)] disabled:opacity-50"
                 >
-                  {loading ? "Enviando solicitud..." : "Enviar Reclamación a CAPITAL CLAIM ULTRA 9K"}
+                  {loading ? "Enviando solicitud..." : "Enviar Reclamación a Justicia Patrimonial"}
                 </button>
                 <p className="text-xs text-center text-slate-500 mt-4">
                   Sus datos están resguardados bajo estricto secreto profesional. Los casos se derivan a interaccionestelefonicas@gmail.com.
@@ -450,10 +450,10 @@ export default function LandingPageForex() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center items-center gap-2 mb-4">
             <Scale className="h-5 w-5 text-blue-500" />
-            <span className="font-black text-slate-200 text-lg tracking-wider">CAPITAL CLAIM ULTRA 9K</span>
+            <span className="font-black text-slate-200 text-lg tracking-wider">JUSTICIA PATRIMONIAL</span>
           </div>
           <p className="mb-2">División de Reclamaciones Financieras y Disputas Forex.</p>
-          <p>© {new Date().getFullYear()} CAPITAL CLAIM ULTRA 9K. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} JUSTICIA PATRIMONIAL. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
