@@ -26,9 +26,9 @@ export default function LandingPageForex() {
       amount: formData.amount,
     };
 
-    const SERVICE_ID = "TU_SERVICE_ID";
-    const TEMPLATE_ID = "TU_TEMPLATE_ID";
-    const PUBLIC_KEY = "TU_PUBLIC_KEY";
+    const SERVICE_ID = "service_y6z3j4k";
+    const TEMPLATE_ID = "template_g3rdw63";
+    const PUBLIC_KEY = "wtSjJ6ukr8aYbRcuE";
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then((response) => {
