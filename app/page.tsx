@@ -145,7 +145,7 @@ export default function LandingPageForex() {
               </div>
               <div>
                 <h1 className="text-xl font-black tracking-wider text-white">JUSTICIA <span className="text-blue-500">PATRIMONIAL</span></h1>
-                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Protocolo de Recuperación Financiera</p>
+                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Reclamaciones Financieras</p>
               </div>
             </div>
             <div className="hidden md:flex gap-6 items-center">
@@ -410,7 +410,7 @@ export default function LandingPageForex() {
                     placeholder="Ej. PlatformFX, etc." />
                 </div>
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado</label>
+                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Capital Invertido</label>
                   <div className="flex gap-2">
                     <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
                       className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
