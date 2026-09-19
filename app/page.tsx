@@ -18,7 +18,6 @@ export default function LandingPageForex() {
     e.preventDefault();
     setLoading(true);
 
-    // Parámetros que se envían a tu plantilla de EmailJS
     const templateParams = {
       to_email: 'interaccionestelefonicas@gmail.com',
       name: formData.name,
@@ -27,7 +26,6 @@ export default function LandingPageForex() {
       amount: formData.amount,
     };
 
-    // REEMPLAZA ESTOS 3 VALORES CON LOS DE TU CUENTA DE EMAILJS:
     const SERVICE_ID = "TU_SERVICE_ID";
     const TEMPLATE_ID = "TU_TEMPLATE_ID";
     const PUBLIC_KEY = "TU_PUBLIC_KEY";
@@ -72,7 +70,8 @@ export default function LandingPageForex() {
               </div>
             </div>
             <div className="hidden md:flex gap-6 items-center">
-              <a href="#evaluacion" className="bg-blue-600 text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+              {/* Botón del Header Redondeado (rounded-full) */}
+              <a href="#evaluacion" className="bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                 Activar Reclamación
               </a>
             </div>
@@ -114,7 +113,8 @@ export default function LandingPageForex() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
-                <a href="#evaluacion" className="inline-flex justify-center items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-md font-extrabold text-lg hover:bg-blue-500 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)]">
+                {/* Botón Principal del Hero Redondeado (rounded-full) */}
+                <a href="#evaluacion" className="inline-flex justify-center items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-extrabold text-lg hover:bg-blue-500 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)]">
                   Iniciar Caso con ULTRA 9K
                   <ArrowRight className="h-5 w-5" />
                 </a>
@@ -227,7 +227,7 @@ export default function LandingPageForex() {
                 </li>
               </ul>
               
-              <a href="#evaluacion" className="block w-full text-center bg-blue-600 text-white py-3.5 rounded-md font-bold hover:bg-blue-500 transition-colors relative z-10 shadow-lg">
+              <a href="#evaluacion" className="block w-full text-center bg-blue-600 text-white py-3.5 rounded-full font-bold hover:bg-blue-500 transition-colors relative z-10 shadow-lg">
                 Iniciar Evaluación del Caso
               </a>
             </motion.div>
@@ -282,7 +282,7 @@ export default function LandingPageForex() {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full bg-blue-600 text-white font-extrabold text-lg py-4 rounded-md hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.4)] disabled:opacity-50"
+                  className="w-full bg-blue-600 text-white font-extrabold text-lg py-4 rounded-full hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.4)] disabled:opacity-50"
                 >
                   {loading ? "Enviando solicitud..." : "Enviar Reclamación a CAPITAL CLAIM ULTRA 9K"}
                 </button>
