@@ -1,16 +1,38 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldAlert, Scale, FileSearch, ArrowRight, Gavel, CheckCircle2 } from 'lucide-react';
+import { ShieldAlert, Scale, FileSearch, ArrowRight, Gavel, CheckCircle2, ChevronDown } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
+const countries = [
+  { name: "México", code: "+52", flag: "https://flagcdn.com/w40/mx.png" },
+  { name: "Perú", code: "+51", flag: "https://flagcdn.com/w40/pe.png" },
+  { name: "Chile", code: "+56", flag: "https://flagcdn.com/w40/cl.png" },
+  { name: "Costa Rica", code: "+506", flag: "https://flagcdn.com/w40/cr.png" },
+  { name: "Bolivia", code: "+591", flag: "https://flagcdn.com/w40/bo.png" },
+];
+
 export default function LandingPageForex() {
-  const [formData, setFormData] = useState({ name: '', email: '', broker: '', amount: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    phoneCode: '+52', 
+    phone: '', 
+    broker: '', 
+    amount: '', 
+    currency: 'USD',
+    date: '' 
+  });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
+  
+  // Estados para el selector personalizado de países
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Efecto para hacer que la ventana de éxito desaparezca sola a los 4 segundos
+  const selectedCountry = countries.find(c => c.code === formData.phoneCode) || countries[0];
+
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
@@ -20,8 +42,26 @@ export default function LandingPageForex() {
     }
   }, [successMessage]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Cerrar el menú desplegable al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, [name]: numericValue }));
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -29,12 +69,17 @@ export default function LandingPageForex() {
     e.preventDefault();
     setLoading(true);
 
+    const fullPhone = `${formData.phoneCode} ${formData.phone}`;
+    const fullAmount = `${formData.amount} ${formData.currency}`;
+
     const templateParams = {
       to_email: 'interaccionestelefonicas@gmail.com',
       name: formData.name,
       email: formData.email,
+      phone: fullPhone,
       broker: formData.broker,
-      amount: formData.amount,
+      amount: fullAmount,
+      date: formData.date,
     };
 
     const SERVICE_ID = "service_y6z3j4k";
@@ -44,8 +89,8 @@ export default function LandingPageForex() {
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        setSuccessMessage(true); // Muestra la ventana animada de éxito
-        setFormData({ name: '', email: '', broker: '', amount: '' });
+        setSuccessMessage(true);
+        setFormData({ name: '', email: '', phoneCode: '+52', phone: '', broker: '', amount: '', currency: 'USD', date: '' });
         setLoading(false);
       }, (err) => {
         console.log('FAILED...', err);
@@ -67,7 +112,7 @@ export default function LandingPageForex() {
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-blue-600 selection:text-white overflow-x-hidden relative">
       
-      {/* VENTANA ANIMADA FLOTANTE DE ÉXITO (MODAL) */}
+      {/* VENTANA ANIMADA FLOTANTE DE ÉXITO */}
       <AnimatePresence>
         {successMessage && (
           <motion.div 
@@ -294,6 +339,68 @@ export default function LandingPageForex() {
                     placeholder="correo@ejemplo.com" />
                 </div>
               </div>
+
+              {/* CAMPOS: TELÉFONO CON SELECTOR DE BANDERAS REALES Y FECHA */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">Número de Teléfono / WhatsApp</label>
+                  <div className="flex gap-2 relative">
+                    
+                    {/* SELECTOR PERSONALIZADO CON IMÁGENES DE BANDERAS */}
+                    <div className="relative" ref={dropdownRef}>
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="h-full px-3 py-3 rounded-md border border-slate-800 bg-slate-900 text-white flex items-center gap-2 hover:border-blue-500 transition-all text-sm min-w-[130px] justify-between"
+                      >
+                        <div className="flex items-center gap-2">
+                          <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
+                          <span className="font-medium">{selectedCountry.code}</span>
+                        </div>
+                        <ChevronDown className="h-4 w-4 text-slate-400" />
+                      </button>
+
+                      {/* MENÚ DESPLEGABLE CON BANDERAS */}
+                      {isDropdownOpen && (
+                        <div className="absolute left-0 top-full mt-1 w-52 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl z-50 overflow-hidden">
+                          {countries.map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => {
+                                setFormData(prev => ({ ...prev, phoneCode: country.code }));
+                                setIsDropdownOpen(false);
+                              }}
+                              className="w-full px-4 py-2.5 flex items-center gap-3 text-left text-sm text-slate-200 hover:bg-blue-600/20 hover:text-white transition-all border-b border-slate-800/50 last:border-none"
+                            >
+                              <img src={country.flag} alt={country.name} className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
+                              <span className="font-medium">{country.name}</span>
+                              <span className="text-slate-400 ml-auto text-xs">{country.code}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <input 
+                      type="text" 
+                      id="phone" 
+                      name="phone" 
+                      value={formData.phone} 
+                      onChange={handleInputChange} 
+                      required
+                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      placeholder="Solo números" 
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="date" className="block text-sm font-semibold text-slate-300 mb-2">Fecha aproximada de inversión</label>
+                  <input type="date" id="date" name="date" value={formData.date} onChange={handleInputChange} required
+                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
+                </div>
+              </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -303,10 +410,21 @@ export default function LandingPageForex() {
                     placeholder="Ej. PlatformFX, etc." />
                 </div>
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado (USD/EUR)</label>
-                  <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    placeholder="Ej. 10.000$ o 5,000 USD" />
+                  <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado</label>
+                  <div className="flex gap-2">
+                    <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
+                      className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      placeholder="Ej. 10.000 o 5,000" />
+                    <select 
+                      name="currency" 
+                      value={formData.currency} 
+                      onChange={handleInputChange}
+                      className="px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-bold text-sm"
+                    >
+                      <option value="USD">USD ($)</option>
+                      <option value="EUR">EUR (€)</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
