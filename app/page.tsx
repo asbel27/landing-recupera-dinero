@@ -70,7 +70,6 @@ export default function LandingPageForex() {
               </div>
             </div>
             <div className="hidden md:flex gap-6 items-center">
-              {/* Botón del Header Redondeado (rounded-full) */}
               <a href="#evaluacion" className="bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                 Activar Reclamación
               </a>
@@ -113,7 +112,6 @@ export default function LandingPageForex() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
-                {/* Botón Principal del Hero Redondeado (rounded-full) */}
                 <a href="#evaluacion" className="inline-flex justify-center items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-extrabold text-lg hover:bg-blue-500 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)]">
                   Iniciar Caso con ULTRA 9K
                   <ArrowRight className="h-5 w-5" />
@@ -274,7 +272,7 @@ export default function LandingPageForex() {
                   <label htmlFor="amount" className="block text-sm font-semibold text-slate-300 mb-2">Monto retenido estimado (USD/EUR)</label>
                   <input type="text" id="amount" name="amount" value={formData.amount} onChange={handleInputChange} required
                     className="w-full px-4 py-3 rounded-md border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    placeholder="Ej. $10,000" />
+                    placeholder="Ej. 10.000$ o 5,000 USD" />
                 </div>
               </div>
 
